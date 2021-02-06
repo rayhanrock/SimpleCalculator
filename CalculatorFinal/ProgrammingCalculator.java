@@ -11,7 +11,7 @@ public class ProgrammingCalculator extends JFrame {
     private Container container;
     private JTextArea inputTextArea;
     private Font arialBoldFont;
-    private JButton convertButton;
+    private JButton convertButton, clearButton;
     private JComboBox typeComboBox;
 
     private JLabel inputLabel,
@@ -51,6 +51,7 @@ public class ProgrammingCalculator extends JFrame {
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Programmin Calculator");
+        this.setResizable(false);
         this.setBounds(100, 100, 550, 500);
     }
 
@@ -88,6 +89,21 @@ public class ProgrammingCalculator extends JFrame {
         convertButton.addActionListener((ActionEvent event) -> {
             this.convert();
         });
+        
+        clearButton.addActionListener((ActionEvent event) -> {
+             this.clear();
+            
+            
+        });
+
+    }
+    
+    private void clear() {
+        inputTextArea.setText(null);
+        hexadecimalLabel.setText("Hexadecimal : " + 0);
+        octalLabel.setText("Octal : " + 0);
+        decimalLabel.setText("Decimal : " + 0);
+        binaryLabel.setText("Binary : " + 0);
 
     }
 
@@ -134,6 +150,12 @@ public class ProgrammingCalculator extends JFrame {
 
         convertButton.setBounds(145, 100, 255, 30);
         container.add(convertButton);
+        
+        clearButton = new JButton();
+        clearButton.setText("Clear");
+
+        clearButton.setBounds(145, 135, 255, 30);
+        container.add(clearButton);
 
         decimalLabel.setText("Decimal : " + 0);
         decimalLabel.setName("decimal");
@@ -152,7 +174,7 @@ public class ProgrammingCalculator extends JFrame {
 
         hexadecimalLabel.setText("Hexadecimal : " + 0);
         hexadecimalLabel.setName("hexadecimal");
-        hexadecimalLabel.setBounds(145, 145, 300, 20);
+        hexadecimalLabel.setBounds(145, 245, 300, 20);
         container.add(hexadecimalLabel);
 
     }
