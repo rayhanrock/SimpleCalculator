@@ -11,7 +11,7 @@ public class AgeCalculator extends JFrame {
     private JTextField tfdate, tfmonth, tfyear;
     private JLabel input, year, month, date, header,error, emptyfield;
     private Font arial_bold, errorfont;
-    private JButton calculateAge;
+    private JButton calculateAge, clear;
     private JPanel ansPane;
 
     public AgeCalculator() {
@@ -53,6 +53,11 @@ public class AgeCalculator extends JFrame {
         calculateAge = new JButton("Calculate");
         calculateAge.setBounds(550, 20, 100, 30);
         container.add(calculateAge);
+        
+        
+        clear = new JButton("Clear");
+        clear.setBounds(670, 20, 100, 30);
+        container.add(clear);
 
         error = new JLabel("Error ! please input a valid date.");
         error.setFont(errorfont);
@@ -60,7 +65,7 @@ public class AgeCalculator extends JFrame {
         error.setBounds(330, 50, 300, 30);
         container.add(error);
 
-        emptyfield = new JLabel("Please input you birthdate.");
+        emptyfield = new JLabel("Please input your birthdate.");
         emptyfield.setFont(errorfont);
         emptyfield.setVisible(false);
         emptyfield.setBounds(330, 50, 300, 30);
@@ -111,6 +116,9 @@ public class AgeCalculator extends JFrame {
                     if ("0".equals(age)) {
                         emptyfield.setVisible(false);
                         error.setVisible(true);
+                        year.setText("Years       :    " + "..");
+                        month.setText("Months   :    " + "..");
+                        date.setText("Days    :    " + "..");
                     } else {
                         emptyfield.setVisible(false);
                         error.setVisible(false);
@@ -191,6 +199,20 @@ public class AgeCalculator extends JFrame {
             }
 
         });
+        
+        
+        clear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                emptyfield.setVisible(false);
+                error.setVisible(false);
+                tfmonth.setText(null);
+                tfdate.setText(null);
+                tfyear.setText(null);
+               
+
+            }
+
+        });
 
     }
 
@@ -198,7 +220,8 @@ public class AgeCalculator extends JFrame {
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Age Calculator");
-        this.setBounds(100, 100, 750, 500);
+        this.setBounds(100, 100, 850, 500);
+        this.setResizable(false);
     }
 
 
